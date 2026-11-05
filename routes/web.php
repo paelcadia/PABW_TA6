@@ -10,8 +10,8 @@ Route::get('/', function () {
     return redirect()->route('lapor.form');
 });
 
-Route::get('/lapor', [LaporanController::class, 'create'])->name('lapor.form');
-Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
+Route::get('/lapor', [LaporanController::class, 'createPublic'])->name('lapor.form');
+Route::post('/lapor', [LaporanController::class, 'storePublic'])->name('lapor.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register');
@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::resource('laporan', LaporanController::class);
     Route::get('/profil', [ProfileController::class, 'show'])->name('profile');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });

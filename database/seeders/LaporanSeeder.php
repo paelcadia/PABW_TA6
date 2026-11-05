@@ -14,11 +14,19 @@ class LaporanSeeder extends Seeder
         $kecamatan = ['Dayeuhkolot', 'Baleendah', 'Bojongsoang', 'Rancaekek', 'Majalaya'];
 
         for ($index = 0; $index < 15; $index++) {
+            $tinggiAir = $faker->numberBetween(10, 150);
+            $tanggal = $faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d');
+
             Laporan::create([
                 'nama_pelapor' => $faker->name(),
-                'lokasi' => $faker->randomElement($kecamatan),
-                'tinggi_genangan' => $faker->numberBetween(10, 150),
-                'tanggal_kejadian' => $faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
+                'no_hp' => $faker->numerify('08##########'),
+                'lokasi' => $faker->streetAddress(),
+                'kecamatan' => $faker->randomElement($kecamatan),
+                'tinggi_air' => $tinggiAir,
+                'tinggi_genangan' => $tinggiAir,
+                'keterangan' => $faker->sentence(),
+                'status' => $faker->randomElement(['Menunggu', 'Diproses', 'Selesai']),
+                'tanggal_kejadian' => $tanggal,
             ]);
         }
     }

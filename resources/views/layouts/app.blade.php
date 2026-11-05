@@ -22,7 +22,7 @@
             <nav class="main-nav" aria-label="Navigasi utama">
                 <a href="{{ route('lapor.form') }}" @class(['nav-link', 'is-active' => request()->routeIs('lapor.form')])>Kirim Laporan</a>
                 @auth
-                    <a href="{{ route('laporan.index') }}" @class(['nav-link', 'is-active' => request()->routeIs('laporan.index')])>Daftar Laporan</a>
+                    <a href="{{ route('laporan.index') }}" @class(['nav-link', 'is-active' => request()->routeIs('laporan.*')])>Daftar Laporan</a>
                     <a href="{{ route('profile') }}" @class(['nav-link', 'is-active' => request()->routeIs('profile')])>Profil Petugas</a>
                     <form method="POST" action="{{ route('logout') }}" class="nav-logout">
                         @csrf
